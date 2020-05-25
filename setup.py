@@ -7,5 +7,8 @@ setup(name='trvo_utils',
       author='Trevol',
       author_email='iamvovan@mail.ru',
       license='MIT',
-      packages=['trvo_utils'],
+      packages=['trvo_utils', 'trvo_utils.voc_annotation'],
+      install_requires=[
+          'numpy',
+      ],
       zip_safe=False)
