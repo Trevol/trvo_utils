@@ -1,0 +1,6 @@
+# install from directory in editable (developer) mode
+pip install -e ~/Repos/trvo_utils/
+# install by cloning from git
+pip install -U  git+https://github.com/Trevol/trvo_utils
+pip install -U  https://github.com/Trevol/trvo_utils/archive/master.zip
+

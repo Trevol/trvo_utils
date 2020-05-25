@@ -7,7 +7,7 @@ class PascalVocXmlParser(object):
     """Parse annotation for 1-annotation file """
 
     def __init__(self, annFile):
-        self._root = self._root_tag(annFile)
+        self._root = parse(annFile).getroot()
 
     def filename(self):
         """
@@ -57,9 +57,3 @@ class PascalVocXmlParser(object):
             bbs.append(box)
         bbs = np.array(bbs)
         return bbs
-
-    @staticmethod
-    def _root_tag(fname):
-        tree = parse(fname)
-        root = tree.getroot()
-        return root
