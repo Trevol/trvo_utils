@@ -9,6 +9,6 @@ setup(name='trvo_utils',
       license='MIT',
       packages=['trvo_utils', 'trvo_utils.voc_annotation'],
       install_requires=[
-          'numpy',
+          'numpy', 'scikit-image', 'opencv-python'
       ],
       zip_safe=False)

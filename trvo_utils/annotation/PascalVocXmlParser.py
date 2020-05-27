@@ -55,5 +55,7 @@ class PascalVocXmlParser(object):
             y2 = box_tag.find("ymax").text
             box = np.float32([x1, y1, x2, y2])
             bbs.append(box)
-        bbs = np.array(bbs)
         return bbs
+
+    def annotation(self):
+        return self.boxes(), self.labels()
