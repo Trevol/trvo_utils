@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='trvo_utils',
       version='0.1',
@@ -7,7 +7,7 @@ setup(name='trvo_utils',
       author='Trevol',
       author_email='iamvovan@mail.ru',
       license='MIT',
-      packages=['trvo_utils', 'trvo_utils.voc_annotation'],
+      packages=find_packages(exclude=["tests"]),
       install_requires=[
           'numpy', 'scikit-image', 'opencv-python'
       ],
