@@ -7,9 +7,11 @@ class BBox:
         w = w_norm * imW
         h = h_norm * imH
 
-        pt1 = _round(cx - w / 2), _round(cy - h / 2)
-        pt2 = _round(cx + w / 2), _round(cy + h / 2)
-        return pt1, pt2
+        x1 = cx - w / 2
+        y1 = cy - h / 2
+        x2 = cx + w / 2
+        y2 = cy + h / 2
+        return x1, y1, x2, y2
 
     @staticmethod
     def yolo2voc_box(yoloBox, imgSize):
