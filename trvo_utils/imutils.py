@@ -29,6 +29,11 @@ def imshowWait(*unnamedMat, **namedMat):
     return cv2.waitKey()
 
 
+def imreadRGB(filename):
+    img = cv2.imread(filename)
+    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB, img)
+
+
 def fit_image_to_shape(image, dstShape):
     dstH, dstW = dstShape
     imageH, imageW = image.shape[:2]
