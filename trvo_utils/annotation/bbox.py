@@ -12,6 +12,16 @@ class BBox:
         return pt1, pt2
 
     @staticmethod
+    def yolo2voc_box(yoloBox, imgSize):
+        cx_norm, cy_norm, w_norm, h_norm = yoloBox
+        return BBox.yolo2voc(cx_norm, cy_norm, w_norm, h_norm, imgSize)
+
+    @staticmethod
+    def yolo2voc_boxes(yoloBoxes, imgSize):
+        toVoc = BBox.yolo2voc_box
+        return [toVoc(b, imgSize) for b in yoloBoxes]
+
+    @staticmethod
     def voc2yolo(vocBox, imgSize):
         x1, y1, x2, y2 = vocBox
         imgH, imgW = imgSize
@@ -20,6 +30,11 @@ class BBox:
         wNorm = (x2 - x1) / imgW
         hNorm = (y2 - y1) / imgH
         return cxNorm, cyNorm, wNorm, hNorm
+
+    @staticmethod
+    def voc2yolo_boxes(vocBoxes, imgSize):
+        toYolo = BBox.voc2yolo
+        return [toYolo(b, imgSize) for b in vocBoxes]
 
 
 def _round(arg):
