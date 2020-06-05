@@ -38,6 +38,10 @@ def rgb2bgr(rgb, out=None):
     return cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR, out)
 
 
+def gray2bgr(gray, out=None):
+    return cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR, out)
+
+
 def fit_image_to_shape(image, dstShape):
     dstH, dstW = dstShape
     imageH, imageW = image.shape[:2]
