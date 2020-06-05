@@ -34,6 +34,10 @@ def imreadRGB(filename):
     return cv2.cvtColor(img, cv2.COLOR_BGR2RGB, img)
 
 
+def rgb2bgr(rgb, out=None):
+    return cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR, out)
+
+
 def fit_image_to_shape(image, dstShape):
     dstH, dstW = dstShape
     imageH, imageW = image.shape[:2]
