@@ -137,6 +137,12 @@ def zeros_like_channels(img, size):
 
 
 def imSize(img) -> Tuple[int, int]:
+    """
+
+    :param img:
+    :return:
+    (rows, cols) or (height, width)
+    """
     return img.shape[:2]
 
 

@@ -20,6 +20,17 @@ class PascalVocXmlParser(object):
         """
         return self._root.find("filename").text
 
+    def size(self):
+        """
+
+        :return:
+        (width, height)
+        """
+        size = self._root.find("size")
+        width = size.find("width").text
+        height = size.find("height").text
+        return int(width), int(height)
+
     def labels(self):
         """
         # Args

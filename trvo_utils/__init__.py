@@ -2,6 +2,10 @@ from glob import glob
 
 
 def toInt(*args):
+    return toInt_array(args)
+
+
+def toInt_array(args):
     return map(int, args)
 
 
