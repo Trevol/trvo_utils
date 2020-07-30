@@ -62,12 +62,20 @@ def fit_image_to_shape(image, dstShape):
 
 def fit_image_boxes_to_shape(image, boxes, dstShape):
     image, scale = fit_image_to_shape(image, dstShape)
-    if scale >= 1:
-        return image, boxes, scale
-    scaled_boxes = [
-        toInt(x1 * scale, y1 * scale, x2 * scale, y2 * scale) for x1, y1, x2, y2 in boxes
-    ]
-    return image, scaled_boxes, scale
+    return image, scaleBoxes(boxes, scale), scale
+
+
+def scaleBoxes(boxes, scale):
+    if scale == 1:
+        return boxes
+    return [scaleBox(b, scale) for b in boxes]
+
+
+def scaleBox(box, scale):
+    if scale == 1:
+        return box
+    x1, y1, x2, y2 = box
+    return x1 * scale, y1 * scale, x2 * scale, y2 * scale
 
 
 def imResize(image, boxes, desired_w, desired_h):
