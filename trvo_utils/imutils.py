@@ -40,6 +40,10 @@ def rgb2bgr(rgb, out=None):
     return cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR, out)
 
 
+def bgr2rgb(bgr, out=None):
+    return cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB, out)
+
+
 def gray2bgr(gray, out=None):
     return cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR, out)
 
