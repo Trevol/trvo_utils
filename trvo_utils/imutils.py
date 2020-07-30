@@ -5,6 +5,8 @@ import itertools
 import numpy as np
 from skimage.filters import threshold_sauvola
 
+from trvo_utils import toInt
+
 
 def imshow(*unnamedMat, **namedMat):
     for name, matOrMatWithTitle in itertools.chain(enumerate(unnamedMat), namedMat.items()):
@@ -52,6 +54,16 @@ def fit_image_to_shape(image, dstShape):
     if scale >= 1:
         return image, scale
     return cv2.resize(image, None, None, scale, scale), scale
+
+
+def fit_image_boxes_to_shape(image, boxes, dstShape):
+    image, scale = fit_image_to_shape(image, dstShape)
+    if scale >= 1:
+        return image, boxes, scale
+    scaled_boxes = [
+        toInt(x1 * scale, y1 * scale, x2 * scale, y2 * scale) for x1, y1, x2, y2 in boxes
+    ]
+    return image, scaled_boxes, scale
 
 
 def imResize(image, boxes, desired_w, desired_h):
