@@ -73,7 +73,11 @@ def scaleBoxes(boxes, scale):
 
 def imgByBox(srcImg, box, extraSpace=0):
     x1, y1, x2, y2 = toInt_array(box)
-    return srcImg[y1 - extraSpace:y2 + extraSpace, x1 - extraSpace:x2 + extraSpace]
+    h, w = imSize(srcImg)
+    return srcImg[
+           max(y1 - extraSpace, 0):min(y2 + extraSpace, h),
+           max(x1 - extraSpace, 0):min(x2 + extraSpace, w)
+           ]
 
 
 def scaleBox(box, scale):
