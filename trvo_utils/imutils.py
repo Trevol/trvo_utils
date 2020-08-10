@@ -56,7 +56,7 @@ def fit_image_to_shape(image, dstShape):
     scaleW = dstW / imageW
     scale = min(scaleH, scaleW)
     if scale >= 1:
-        return image, scale
+        return image, 1
     return cv2.resize(image, None, None, scale, scale), scale
 
 
