@@ -6,6 +6,13 @@ import numpy as np
 from skimage.filters import threshold_sauvola
 
 from trvo_utils import toInt, toInt_array
+from trvo_utils.path_utils import list_files
+
+IMAGES_EXTENSIONS = ['jpg', 'jpeg', 'png']
+
+
+def enumerate_images(dirs):
+    return list_files(dirs, IMAGES_EXTENSIONS)
 
 
 def imshow(*unnamedMat, **namedMat):
