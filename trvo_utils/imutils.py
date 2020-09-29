@@ -186,6 +186,15 @@ def imSize(img) -> Tuple[int, int]:
     return img.shape[:2]
 
 
+def imHW(img):
+    return imSize(img)
+
+
+def imWH(img):
+    h, w = imHW(img)
+    return w, h
+
+
 def imHeight(img) -> int:
     return img.shape[0]
 
