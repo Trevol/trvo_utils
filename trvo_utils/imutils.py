@@ -34,8 +34,24 @@ def imshow(*unnamedMat, **namedMat):
 
 
 def imshowWait(*unnamedMat, **namedMat):
+    waitForKeys = None
+    kbdKeysParam = 'waitForKeys'
+    if kbdKeysParam in namedMat:
+        waitForKeys = namedMat[kbdKeysParam]
+        del namedMat[kbdKeysParam]
     imshow(*unnamedMat, **namedMat)
-    return cv2.waitKey()
+    return waitKeys(waitForKeys)
+
+
+def waitKeys(keys):
+    if keys is None or keys == [] or keys == ():
+        return cv2.waitKey()
+    if not isinstance(keys, (list, tuple)):
+        keys = [keys]
+    while True:
+        key = cv2.waitKey()
+        if key in keys:
+            return key
 
 
 def imreadRGB(filename):
