@@ -31,6 +31,11 @@ def imshowWait(*unnamedMat, **namedMat):
     return waitKeys(waitForKeys)
 
 
+def imshowWait_WFK(*unnamedMat, waitForKeys=None, **namedMat):
+    imshow(*unnamedMat, **namedMat)
+    return waitKeys(waitForKeys)
+
+
 def __ensureKeyCodes(keys):
     return [__ensureKeyCode(k) for k in keys]
 
