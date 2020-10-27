@@ -18,12 +18,15 @@ def scaleBox(box, scale):
     return x1 * scale, y1 * scale, x2 * scale, y2 * scale
 
 
-def expandBox(srcBox, margin: Union[int, float]):
+def expandBox(srcBox, xMargin: Union[int, float], yMargin: Union[int, float] = None,
+              relative: bool = False):
     srcBox = np.asarray(srcBox)
-    if isinstance(margin, int):
-        return srcBox + [-margin, -margin, margin, margin]
+    if yMargin is None:
+        yMargin = xMargin
+    if not relative:
+        return srcBox + [-xMargin, -yMargin, xMargin, yMargin]
     else:  # float margin
-        marginWH = boxSizeWH(srcBox) * margin
+        marginWH = boxSizeWH(srcBox) * [xMargin, yMargin]
         margins = np.append(-marginWH, marginWH)
         return srcBox + margins
 
