@@ -3,35 +3,40 @@ import itertools
 import cv2
 
 
+def tryDestroyWindow(name):
+    try:
+        cv2.destroyWindow(name)
+        return True
+    except:
+        return False
+
+
 def imshow(*unnamedMat, **namedMat):
     for name, matOrMatWithTitle in itertools.chain(enumerate(unnamedMat), namedMat.items()):
+        name = str(name)
         if matOrMatWithTitle is None:
-            try:
-                cv2.destroyWindow(name)
-            except:
-                pass
+            tryDestroyWindow(name)
             continue
         if isinstance(matOrMatWithTitle, (tuple, list)) and len(matOrMatWithTitle) == 2:
             mat, title = matOrMatWithTitle
         else:
             mat, title = matOrMatWithTitle, None
-        winName = str(name)
-        cv2.imshow(winName, mat)
+        cv2.imshow(name, mat)
         if title is not None:
-            cv2.setWindowTitle(winName, str(title))
+            cv2.setWindowTitle(name, str(title))
 
 
-def imshowWait(*unnamedMat, **namedMat):
-    waitForKeys = None
-    kbdKeysParam = 'waitForKeys'
-    if kbdKeysParam in namedMat:
-        waitForKeys = namedMat[kbdKeysParam]
-        del namedMat[kbdKeysParam]
-    imshow(*unnamedMat, **namedMat)
-    return waitKeys(waitForKeys)
+# def imshowWait(*unnamedMat, **namedMat):
+#     waitForKeys = None
+#     kbdKeysParam = 'waitForKeys'
+#     if kbdKeysParam in namedMat:
+#         waitForKeys = namedMat[kbdKeysParam]
+#         del namedMat[kbdKeysParam]
+#     imshow(*unnamedMat, **namedMat)
+#     return waitKeys(waitForKeys)
 
 
-def imshowWait_WFK(*unnamedMat, waitForKeys=None, **namedMat):
+def imshowWait(*unnamedMat, waitForKeys=None, **namedMat):
     imshow(*unnamedMat, **namedMat)
     return waitKeys(waitForKeys)
 

@@ -1,11 +1,11 @@
 from itertools import zip_longest, repeat
 from typing import Union, Tuple
 import cv2
-import itertools
 import numpy as np
 from skimage.filters import threshold_sauvola
 
-from trvo_utils import toInt, toInt_array
+from trvo_utils import toInt_array
+from trvo_utils.box_utils import scaleBoxes, expandBox
 from trvo_utils.path_utils import list_files
 
 IMAGES_EXTENSIONS = ['jpg', 'jpeg', 'png']
@@ -53,28 +53,11 @@ def fit_image_boxes_to_shape(image, boxes, dstShape):
     return image, scaleBoxes(boxes, scale), scale
 
 
-def scaleBoxes(boxes, scale):
-    if scale == 1:
-        return boxes
-    return [scaleBox(b, scale) for b in boxes]
-
-
-def imgByBox(srcImg, box, extraSpace=0):
+def imgByBox(srcImg, box):
     x1, y1, x2, y2 = toInt_array(box)
     h, w = imSize(srcImg)
-    return srcImg[
-           max(y1 - extraSpace, 0):min(y2 + extraSpace, h),
-           max(x1 - extraSpace, 0):min(x2 + extraSpace, w)
-           ]
-
-
-def scaleBox(box, scale):
-    if scale == 1:
-        return box
-    if isinstance(box, np.ndarray):
-        return box * scale
-    x1, y1, x2, y2 = box
-    return x1 * scale, y1 * scale, x2 * scale, y2 * scale
+    boxImg = srcImg[max(y1, 0):min(y2, h), max(x1, 0):min(x2, w)]
+    return boxImg
 
 
 def imResize(image, boxes, desired_w, desired_h):
