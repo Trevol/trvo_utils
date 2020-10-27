@@ -1,4 +1,5 @@
 import math
+from typing import Iterable
 
 
 def batchItems(items, size, maxBatches=None):
@@ -16,6 +17,10 @@ def batchItems(items, size, maxBatches=None):
                 return
     if len(batch):
         yield batch
+
+
+def firstOrDefault(src: Iterable, default=None):
+    return next(iter(src), default)
 
 
 def unzip(iter_iters, *defaults):
