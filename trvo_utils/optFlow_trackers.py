@@ -42,5 +42,5 @@ class RectTracker:
         status = status.reshape(-1, 2)
         status = np.logical_and(status[:, 0], status[:, 1])
         nextBoxes = pts.reshape(-1, 4)
-        nextBoxes = nextBoxes[status]  # filter by status - drop boxes with forgotten corners
-        return nextBoxes
+        # nextBoxes = nextBoxes[status]  # filter by status - drop boxes with forgotten corners
+        return nextBoxes, status
