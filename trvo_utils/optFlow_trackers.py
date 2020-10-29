@@ -37,7 +37,7 @@ class RectTracker:
         self.pointTracker = PointTrackerLK()
 
     def track(self, prevImg, nextImg, prevBoxes):
-        tl_br = prevBoxes.reshape(-1, 2)  # box to top-left and bottom-right
+        tl_br = np.float32(prevBoxes).reshape(-1, 2)  # ensure float32 and convert to [top-left, bottom-right]
         pts, status = self.pointTracker.track(prevImg, nextImg, tl_br)
         status = status.reshape(-1, 2)
         status = np.logical_and(status[:, 0], status[:, 1])
