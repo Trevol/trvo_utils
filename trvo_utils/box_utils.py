@@ -37,10 +37,5 @@ def boxSizeWH(box):
 
 
 def pointInBox(box, pt):
-    x1 = box[0]
-    y1 = box[1]
-    x2 = box[2]
-    y2 = box[3]
-    x = pt[0]
-    y = pt[1]
-    return x1 <= x <= x2 and y1 <= y <= y2
+    # x1 <= x <= x2 and y1 <= y <= y2
+    return box[0] <= pt[0] <= box[2] and box[1] <= pt[1] <= box[3]
