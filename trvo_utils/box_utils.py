@@ -34,3 +34,13 @@ def expandBox(srcBox, xMargin: Union[int, float], yMargin: Union[int, float] = N
 def boxSizeWH(box):
     # p1 - p2
     return box[[2, 3]] - box[[0, 1]]
+
+
+def pointInBox(box, pt):
+    x1 = box[0]
+    y1 = box[1]
+    x2 = box[2]
+    y2 = box[3]
+    x = pt[0]
+    y = pt[1]
+    return x1 <= x <= x2 and y1 <= y <= y2
