@@ -39,3 +39,8 @@ def boxSizeWH(box):
 def pointInBox(box, pt):
     # pt_is_in_box = x1 <= x <= x2 and y1 <= y <= y2
     return box[0] <= pt[0] <= box[2] and box[1] <= pt[1] <= box[3]
+
+
+def boxCenter(box):
+    # pt = (x2+x1)/2, (y2+y1)/2
+    return (box[2] + box[0]) / 2, (box[3] + box[1]) / 2
