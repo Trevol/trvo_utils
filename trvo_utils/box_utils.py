@@ -44,3 +44,31 @@ def pointInBox(box, pt):
 def boxCenter(box):
     # pt = (x2+x1)/2, (y2+y1)/2
     return (box[2] + box[0]) / 2, (box[3] + box[1]) / 2
+
+
+def xyxy2xywh(xyxy):
+    x1 = xyxy[0]
+    y1 = xyxy[1]
+    x2 = xyxy[2]
+    y2 = xyxy[3]
+    w = x2 - x1
+    h = y2 - y1
+    xywh = np.empty_like(xyxy)
+    xywh[0] = x1
+    xywh[1] = y1
+    xywh[2] = w
+    xywh[3] = h
+    return xywh
+
+
+def xywh2xyxy(xywh):
+    x = xywh[0]
+    y = xywh[1]
+    w = xywh[2]
+    h = xywh[3]
+    xyxy = np.empty_like(xywh)
+    xyxy[0] = x
+    xyxy[1] = y
+    xyxy[2] = x + w
+    xyxy[3] = y + h
+    return xyxy
