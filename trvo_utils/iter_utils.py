@@ -1,5 +1,5 @@
 import math
-from typing import Iterable
+from typing import Iterable, List
 
 
 def batchItems(items, size, maxBatches=None):
@@ -42,6 +42,11 @@ def unzip(iter_iters, *defaults):
         if (i + 1) != expectedRowlen:
             raise Exception('All rows must have equal length')
     return lists
+
+
+def itemsByIndexes(items: List, indexes):
+    for i in indexes:
+        yield items[i]
 
 
 if __name__ == '__main__':
