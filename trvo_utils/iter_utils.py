@@ -1,4 +1,5 @@
 import math
+from itertools import groupby
 from typing import Iterable, List
 
 
@@ -47,6 +48,21 @@ def unzip(iter_iters, *defaults):
 def itemsByIndexes(items: List, indexes):
     for i in indexes:
         yield items[i]
+
+
+def __identity(o): return o
+
+
+def groupBy(iterable, isSorted=False, key=None, select=None, aggregate=None):
+    if not isSorted:
+        iterable = sorted(iterable, key=key)
+    grouped = groupby(iterable, key)
+    if select is None and aggregate is None:
+        return grouped
+    select = select or __identity
+    aggregate = aggregate or __identity
+    for keyValue, group in grouped:
+        yield keyValue, aggregate(map(select, group))
 
 
 if __name__ == '__main__':
