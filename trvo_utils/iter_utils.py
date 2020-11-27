@@ -53,16 +53,16 @@ def itemsByIndexes(items: List, indexes):
 def __identity(o): return o
 
 
-def groupBy(iterable, isSorted=False, key=None, select=None, aggregate=None):
+def groupBy(iterable, isSorted=False, key=None, groupSelect=None, groupAggregate=None):
     if not isSorted:
         iterable = sorted(iterable, key=key)
     grouped = groupby(iterable, key)
-    if select is None and aggregate is None:
+    if groupSelect is None and groupAggregate is None:
         return grouped
-    select = select or __identity
-    aggregate = aggregate or __identity
+    groupSelect = groupSelect or __identity
+    groupAggregate = groupAggregate or __identity
     for keyValue, group in grouped:
-        yield keyValue, aggregate(map(select, group))
+        yield keyValue, groupAggregate(map(groupSelect, group))
 
 
 if __name__ == '__main__':
