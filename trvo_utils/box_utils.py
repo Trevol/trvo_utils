@@ -41,9 +41,9 @@ def pointInBox(box, pt):
     return box[0] <= pt[0] <= box[2] and box[1] <= pt[1] <= box[3]
 
 
-def boxCenter(box):
+def boxCenter(xyxyBox):
     # pt = (x2+x1)/2, (y2+y1)/2
-    return (box[2] + box[0]) / 2, (box[3] + box[1]) / 2
+    return (xyxyBox[2] + xyxyBox[0]) / 2, (xyxyBox[3] + xyxyBox[1]) / 2
 
 
 def xyxy2xywh(xyxy):
