@@ -57,8 +57,6 @@ def groupBy(iterable, isSorted=False, key=None, groupSelect=None, groupAggregate
     if not isSorted:
         iterable = sorted(iterable, key=key)
     grouped = groupby(iterable, key)
-    if groupSelect is None and groupAggregate is None:
-        return grouped
     groupSelect = groupSelect or __identity
     groupAggregate = groupAggregate or __identity
     for keyValue, group in grouped:
