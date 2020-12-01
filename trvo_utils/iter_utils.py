@@ -50,6 +50,12 @@ def itemsByIndexes(items: List, indexes):
         yield items[i]
 
 
+def flatten(itemsItems: Iterable[Iterable]) -> Iterable:
+    for items in itemsItems:
+        for item in items:
+            yield item
+
+
 def __identity(o): return o
 
 

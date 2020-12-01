@@ -31,9 +31,13 @@ def expandBox(srcBox, xMargin: Union[int, float], yMargin: Union[int, float] = N
         return srcBox + margins
 
 
-def boxSizeWH(box):
-    # p1 - p2
-    return box[[2, 3]] - box[[0, 1]]
+def boxSizeWH(xyxyBox):
+    if isinstance(xyxyBox, np.ndarray):
+        # p2 - p1
+        return xyxyBox[[2, 3]] - xyxyBox[[0, 1]]
+    else:
+        # x2-x1, y2-y1
+        return xyxyBox[2] - xyxyBox[0], xyxyBox[3] - xyxyBox[1]
 
 
 def pointInBox(box, pt):
@@ -53,11 +57,14 @@ def xyxy2xywh(xyxy):
     y2 = xyxy[3]
     w = x2 - x1
     h = y2 - y1
-    xywh = np.empty_like(xyxy)
-    xywh[0] = x1
-    xywh[1] = y1
-    xywh[2] = w
-    xywh[3] = h
+    if isinstance(xyxy, np.ndarray):
+        xywh = np.empty_like(xyxy)
+        xywh[0] = x1
+        xywh[1] = y1
+        xywh[2] = w
+        xywh[3] = h
+    else:
+        xywh = [x1, y1, w, h]
     return xywh
 
 
@@ -66,9 +73,14 @@ def xywh2xyxy(xywh):
     y = xywh[1]
     w = xywh[2]
     h = xywh[3]
-    xyxy = np.empty_like(xywh)
-    xyxy[0] = x
-    xyxy[1] = y
-    xyxy[2] = x + w
-    xyxy[3] = y + h
+    x2 = x + w
+    y2 = y + h
+    if isinstance(xywh, np.ndarray):
+        xyxy = np.empty_like(xywh)
+        xyxy[0] = x
+        xyxy[1] = y
+        xyxy[2] = x2
+        xyxy[3] = y2
+    else:
+        xyxy = [x, y, x2, y2]
     return xyxy
