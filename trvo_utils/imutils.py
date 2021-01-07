@@ -24,8 +24,16 @@ def rgb2bgr(rgb, out=None):
     return cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR, out)
 
 
+def rgb2bgr_inplace(rgb):
+    return rgb2bgr(rgb, rgb)
+
+
 def bgr2rgb(bgr, out=None):
     return cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB, out)
+
+
+def bgr2rgb_inplace(bgr):
+    return bgr2rgb(bgr, bgr)
 
 
 def gray2bgr(gray, out=None):
