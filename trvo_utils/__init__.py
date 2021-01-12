@@ -13,3 +13,7 @@ def glob_files(patterns):
     for p in patterns:
         for f in sorted(glob(p)):
             yield f
+
+
+def TODO(msg=""):
+    raise NotImplementedError(msg or "")
