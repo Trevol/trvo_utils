@@ -3,18 +3,18 @@ from typing import Union, Tuple
 import numpy as np
 
 
-def scaleBoxes(boxes, scale):
+def scaleBoxes(xyxy_boxes, scale):
     if scale == 1:
-        return boxes
-    return [scaleBox(b, scale) for b in boxes]
+        return xyxy_boxes
+    return [scaleBox(b, scale) for b in xyxy_boxes]
 
 
-def scaleBox(box, scale):
+def scaleBox(xyxy_box, scale):
     if scale == 1:
-        return box
-    if isinstance(box, np.ndarray):
-        return box * scale
-    x1, y1, x2, y2 = box
+        return xyxy_box
+    if isinstance(xyxy_box, np.ndarray):
+        return xyxy_box * scale
+    x1, y1, x2, y2 = xyxy_box
     return x1 * scale, y1 * scale, x2 * scale, y2 * scale
 
 

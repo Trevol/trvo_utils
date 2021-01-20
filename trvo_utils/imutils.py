@@ -56,9 +56,9 @@ def fit_image_to_shape(image, dstShape):
     return cv2.resize(image, None, None, scale, scale), scale
 
 
-def fit_image_boxes_to_shape(image, boxes, dstShape):
+def fit_image_boxes_to_shape(image, xyxy_boxes, dstShape):
     image, scale = fit_image_to_shape(image, dstShape)
-    return image, scaleBoxes(boxes, scale), scale
+    return image, scaleBoxes(xyxy_boxes, scale), scale
 
 
 def imgByBox(srcImg, box):
