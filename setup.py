@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='trvo_utils',
-      version='0.1.3',
+      version='0.1.4',
       description='Series of functions i found useful',
       url='https://github.com/Trevol/trvo_utils',
       author='Trevol',

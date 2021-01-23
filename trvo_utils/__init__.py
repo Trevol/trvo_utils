@@ -6,7 +6,7 @@ def toInt(*args):
 
 
 def toInt_array(args):
-    return map(int, args)
+    return list(map(int, args))
 
 
 def glob_files(patterns):
