@@ -68,6 +68,12 @@ def img_by_xyxy_box(src_img, xyxy_box):
     return boxImg
 
 
+def img_by_xyxy_box_unsafe(src_img, xyxy_box):
+    x1, y1, x2, y2 = toInt_array(xyxy_box)
+    boxImg = src_img[y1:y2, x1:x2]
+    return boxImg
+
+
 def imResize(image, boxes, desired_w, desired_h):
     h, w = imSize(image)
     image = cv2.resize(image, (desired_h, desired_w))
