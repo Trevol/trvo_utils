@@ -61,10 +61,10 @@ def fit_image_boxes_to_shape(image, xyxy_boxes, dstShape):
     return image, scaleBoxes(xyxy_boxes, scale), scale
 
 
-def imgByBox(srcImg, box):
-    x1, y1, x2, y2 = toInt_array(box)
-    h, w = imSize(srcImg)
-    boxImg = srcImg[max(y1, 0):min(y2, h), max(x1, 0):min(x2, w)]
+def img_by_xyxy_box(src_img, xyxy_box):
+    x1, y1, x2, y2 = toInt_array(xyxy_box)
+    h, w = imHW(src_img)
+    boxImg = src_img[max(y1, 0):min(y2, h), max(x1, 0):min(x2, w)]
     return boxImg
 
 
